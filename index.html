@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan Marketing - Agencia de Marketing Digital</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --bg-card-hover: #242424;
+            --text-main: #ffffff;
+            --text-muted: #f8f9fa;
+            --accent-white: #ffffff;
+            --accent-black: #000000;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        .text-muted {
+            color: #d1d5db !important;
+            font-weight: 400 !important;
+        }
+
+        h1, h2, h3, h4, h5, h6, .brand-font {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(15, 15, 15, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--accent-white) !important;
+            letter-spacing: -0.03em;
+        }
+
+        .nav-link {
+            color: #e5e7eb !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-white) !important;
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .btn-custom-white {
+            background-color: var(--accent-white);
+            color: var(--accent-black);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 12px 28px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-white);
+        }
+
+        .btn-custom-white:hover {
+            background-color: transparent;
+            color: var(--accent-white);
+        }
+
+        .btn-custom-outline {
+            background-color: transparent;
+            color: var(--accent-white);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 12px 28px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-custom-outline:hover {
+            border-color: var(--accent-white);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--accent-white);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 160px 0 100px 0;
+            position: relative;
+            background: radial-gradient(circle at 80% 20%, rgba(40, 40, 40, 0.6) 0%, rgba(15, 15, 15, 1) 70%);
+        }
+
+        .hero-img-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Services Cards */
+        .service-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            background-color: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent-white);
+            margin-bottom: 24px;
+        }
+
+        /* Stats & Trust Section */
+        .stats-section {
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            background-color: #121212;
+            padding: 60px 0;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-white);
+        }
+
+        /* Portfolio / Case Studies */
+        .portfolio-card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            position: relative;
+            background-color: var(--bg-card);
+        }
+
+        .portfolio-img {
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+            filter: grayscale(30%);
+            transition: filter 0.3s ease, transform 0.5s ease;
+        }
+
+        .portfolio-card:hover .portfolio-img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15,15,15,0.95), transparent);
+            padding: 30px;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px;
+            height: 100%;
+        }
+
+        /* Contact Form */
+        .contact-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 50px;
+        }
+
+        .form-control, .form-select {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--accent-white);
+            border-radius: 12px;
+            padding: 14px 20px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent-white);
+            color: var(--accent-white);
+            box-shadow: none;
+        }
+
+        .form-control::placeholder {
+            color: #6c757d;
+        }
+
+        /* Floating Widgets */
+        .floating-widgets {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .whatsapp-float {
+            background-color: #25D366;
+        }
+
+        .instagram-float {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            background-color: #0b0b0b;
+            padding: 60px 0 30px 0;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-white);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                Juan Marketing
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center gap-3 mb-3 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#casos">Casos de Éxito</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="https://wa.me/584247699009?text=Hola,%20me%20interesa%20impulsar%20mi%20negocio%20con%20Juan%20Marketing" target="_blank" class="btn btn-custom-white btn-sm px-4 py-2">Asesoría Gratis</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-7">
+                    <div class="badge bg-white text-dark px-3 py-2 rounded-pill mb-4 fw-semibold fs-6">
+                        <i class="fa-solid fa-bolt me-2"></i> Agencia de Marketing Digital
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 text-white">
+                        Escalamos tu negocio al siguiente nivel digital.
+                    </h1>
+                    <p class="lead text-light fw-normal mb-5 fs-5" style="color: #d1d5db !important;">
+                        Transformamos marcas tradicionales en líderes digitales con estrategias de alto rendimiento, gestión de redes sociales, publicidad efectiva y automatizaciones de venta.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <a href="#contacto" class="btn btn-custom-white">Comenzar Proyecto</a>
+                        <a href="https://wa.me/584247699009?text=Hola,%20quisiera%20más%20información%20sobre%20sus%20servicios%20de%20marketing." target="_blank" class="btn btn-custom-outline">
+                            <i class="fab fa-whatsapp me-2"></i> Escribir por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="hero-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Estrategia de Marketing Digital y Análisis de Datos - Juan Marketing" onerror="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center gy-4">
+                <div class="col-md-4 stat-item">
+                    <h3>+150</h3>
+                    <p class="text-light fw-normal mb-0 fs-5" style="color: #d1d5db !important;">Clientes Satisfechos</p>
+                </div>
+                <div class="col-md-4 stat-item">
+                    <h3>+3x</h3>
+                    <p class="text-light fw-normal mb-0 fs-5" style="color: #d1d5db !important;">Retorno de Inversión Promedio</p>
+                </div>
+                <div class="col-md-4 stat-item">
+                    <h3>5 Años</h3>
+                    <p class="text-light fw-normal mb-0 fs-5" style="color: #d1d5db !important;">De Experiencia Comprobada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-5 my-5">
+        <div class="container py-4">
+            <div class="text-center mx-auto mb-5" style="max-width: 700px;">
+                <span class="text-uppercase tracking-wider text-white fw-bold badge bg-secondary mb-2">Nuestros Servicios</span>
+                <h2 class="display-5 fw-bold mt-2 text-white">Soluciones integrales para dominar tu mercado</h2>
+                <p class="text-light fw-normal fs-5 mt-3" style="color: #d1d5db !important;">Diseñamos cada estrategia a la medida de tus objetivos comerciales para garantizar conversiones reales.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3 text-white">Gestión de Redes Sociales</h4>
+                        <p class="text-light fw-normal mb-4" style="color: #9ca3af !important;">Creamos contenido visual magnético, copy persuasivo y calendarización estratégica para conectar con tu audiencia ideal en Instagram y TikTok.</p>
+                        <ul class="list-unstyled text-light fw-normal small mb-0 d-flex flex-column gap-2 fs-6">
+                            <li><i class="fa-solid fa-check text-white me-2"></i> Creación de parrilla de contenidos</li>
+                            <li><i class="fa-solid fa-check text-white me-2"></i> Diseño gráfico y edición de reels</li>
+                            <li><i class="fa-solid fa-check text-white me-2"></i> Community management activo</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3 text-white">Publicidad Digital (Ads)</h4>
+                        <p class="text-light fw-normal mb-4" style="color: #9ca3af !important;">Maximizamos cada dólar invertido con campañas hipersegmentadas en Meta Ads y Google Ads enfocadas estrictamente en generar clientes potenciales.</p>
+                        <ul class="list-unstyled text-light fw-normal small mb-0 d-flex flex-column gap-2 fs-6">
+                            <li><i class="fa-solid fa-check text-white me-2"></i> Segmentación avanzada de público</li>
+                            <li><i class="fa-solid fa-check text-white me-2"></i> Optimización continua de presupuestos</li>
+                            <li><i class="fa-solid fa-check text-white me-2"></i> Reportes detallados de ROI</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3 text-white">Automatización e IA</h4>
+                        <p class="text-light fw-normal mb-4" style="color: #9ca3af !important;">Optimizamos tus canales de venta implementando chatbots inteligentes y embudos automatizados directos a WhatsApp para cualificar prospectos 24/7.</p>
+                        <ul class="list-unstyled text-light fw-normal small mb-0 d-flex flex-column gap-2 fs-6">
+                            <li><i class="fa-solid fa-check text-white me-2"></i> Respuestas automáticas en WhatsApp</li>
+                            <li><i class="fa-solid fa-check text-white me-2"></i> Embudos de cualificación de leads</li>
+                            <li><i class="fa-solid fa-check text-white me-2"></i> Integración de IA para ventas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="py-5 bg-black border-top border-bottom border-secondary" style="--bs-border-opacity: 0.2;">
+        <div class="container py-4">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <div class="position-relative rounded-24 overflow-hidden border border-secondary" style="--bs-border-opacity: 0.3;">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Equipo Juan Marketing" class="w-100 h-auto rounded-4" onerror="this.src='https://placehold.co/600x500/1a1a1a/ffffff?text=Equipo+Profesional'">
+                    </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <span class="text-uppercase tracking-wider text-white fw-bold badge bg-secondary mb-2">Sobre Nosotros</span>
+                    <h2 class="display-5 fw-bold mt-2 text-white mb-4">Expertos apasionados por hacer crecer tu marca</h2>
+                    <p class="text-light fw-normal fs-5 mb-4" style="color: #d1d5db !important;">
+                        En <strong class="text-white fw-semibold">Juan Marketing</strong> combinamos creatividad publicitaria, análisis de datos y tecnología de vanguardia para posicionar tu negocio en la mente y el corazón de tus clientes.
+                    </p>
+                    <p class="text-light fw-normal fs-5 mb-4" style="color: #d1d5db !important;">
+                        Nuestra misión es empoderar a los emprendedores y empresarios dotándolos de herramientas digitales del más alto nivel. No solo creamos campañas; construimos relaciones duraderas entre marcas y consumidores.
+                    </p>
+                    <div class="row g-4 mb-4">
+                        <div class="col-6">
+                            <h3 class="h4 text-white fw-bold mb-1">Estrategia</h3>
+                            <p class="text-light fw-normal small mb-0 fs-6" style="color: #9ca3af !important;">Planificación basada en datos reales de mercado.</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="h4 text-white fw-bold mb-1">Resultados</h3>
+                            <p class="text-light fw-normal small mb-0 fs-6" style="color: #9ca3af !important;">Enfoque absoluto en ventas y rentabilidad.</p>
+                        </div>
+                    </div>
+                    <a href="https://instagram.com/juanmarketing_sc" target="_blank" class="btn btn-custom-outline">
+                        <i class="fab fa-instagram me-2"></i> Síguenos en @juanmarketing_sc
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="casos" class="py-5 my-5">
+        <div class="container py-4">
+            <div class="text-center mx-auto mb-5" style="max-width: 700px;">
+                <span class="text-uppercase tracking-wider text-white fw-bold badge bg-secondary mb-2">Casos de Éxito</span>
+                <h2 class="display-5 fw-bold mt-2 text-white">Resultados que hablan por sí solos</h2>
+                <p class="text-light fw-normal fs-5 mt-3" style="color: #d1d5db !important;">Conoce algunas de las marcas que confiaron en nosotros y transformaron sus ventas.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="portfolio-card">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" alt="E-commerce Moda" class="portfolio-img" onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=Proyecto+Moda'">
+                        <div class="portfolio-overlay">
+                            <span class="badge bg-white text-dark mb-2 fw-bold fs-6">E-commerce / Ads</span>
+                            <h4 class="text-white fw-bold mb-1">Tienda de Ropa Local</h4>
+                            <p class="text-light fw-normal mb-0 fs-6" style="color: #d1d5db !important;">+250% en ventas online en 90 días de campaña.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-card">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Restaurante" class="portfolio-img" onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=Proyecto+Gastronomia'">
+                        <div class="portfolio-overlay">
+                            <span class="badge bg-white text-dark mb-2 fw-bold fs-6">Redes Sociales</span>
+                            <h4 class="text-white fw-bold mb-1">Restaurante Gourmet</h4>
+                            <p class="text-light fw-normal mb-0 fs-6" style="color: #d1d5db !important;">Lleno total fines de semana gracias a estrategia en Instagram y Reels.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-card">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="Bienes Raíces" class="portfolio-img" onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=Proyecto+Inmobiliario'">
+                        <div class="portfolio-overlay">
+                            <span class="badge bg-white text-dark mb-2 fw-bold fs-6">Embudo de Ventas</span>
+                            <h4 class="text-white fw-bold mb-1">Inmobiliaria Regional</h4>
+                            <p class="text-light fw-normal mb-0 fs-6" style="color: #d1d5db !important;">Cierre de 12 propiedades mediante prospección digital avanzada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 bg-black border-top border-bottom border-secondary" style="--bs-border-opacity: 0.2;">
+        <div class="container py-4">
+            <div class="text-center mx-auto mb-5" style="max-width: 700px;">
+                <span class="text-uppercase tracking-wider text-white fw-bold badge bg-secondary mb-2">Testimonios</span>
+                <h2 class="display-5 fw-bold mt-2 text-white">Lo que dicen nuestros clientes</h2>
+                <p class="text-light fw-normal fs-5 mt-3" style="color: #d1d5db !important;">Historias reales de negocios que transformaron su presencia en internet con nosotros.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex text-warning mb-3 gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-light fw-normal mb-4 fs-6" style="color: #e5e7eb !important;">"Trabajar con Juan Marketing fue un antes y un después para nuestra tienda de ropa. Las ventas en Instagram se dispararon desde el primer mes."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center fw-bold fs-5" style="width: 45px; height: 45px;">MR</div>
+                            <div>
+                                <h5 class="text-white h6 mb-0 fw-bold">Mariana Rivas</h5>
+                                <small class="text-light fw-normal" style="color: #9ca3af !important;">Propietaria de Boutique</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex text-warning mb-3 gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-light fw-normal mb-4 fs-6" style="color: #e5e7eb !important;">"La gestión de anuncios y campañas publicitarias superó nuestras expectativas. Tuvimos que contratar más personal para atender la demanda."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center fw-bold fs-5" style="width: 45px; height: 45px;">CG</div>
+                            <div>
+                                <h5 class="text-white h6 mb-0 fw-bold">Carlos Gómez</h5>
+                                <small class="text-light fw-normal" style="color: #9ca3af !important;">Gerente de Restaurante</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex text-warning mb-3 gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-light fw-normal mb-4 fs-6" style="color: #e5e7eb !important;">"Profesionalismo absoluto y atención cercana. La automatización de WhatsApp nos ha permitido cualificar clientes rápidamente."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center fw-bold fs-5" style="width: 45px; height: 45px;">AS</div>
+                            <div>
+                                <h5 class="text-white h6 mb-0 fw-bold">Alejandro Silva</h5>
+                                <small class="text-light fw-normal" style="color: #9ca3af !important;">Director Inmobiliario</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 my-5">
+        <div class="container py-4" style="max-width: 800px;">
+            <div class="text-center mx-auto mb-5">
+                <span class="text-uppercase tracking-wider text-white fw-bold badge bg-secondary mb-2">Preguntas Frecuentes</span>
+                <h2 class="display-5 fw-bold mt-2 text-white">Resolvemos tus dudas</h2>
+                <p class="text-light fw-normal fs-5 mt-3" style="color: #d1d5db !important;">Todo lo que necesitas saber antes de empezar a trabajar con nuestro equipo.</p>
+            </div>
+            <div class="accordion accordion-flush" id="faqAccordion">
+                <div class="accordion-item bg-transparent border border-secondary rounded-4 mb-3 overflow-hidden" style="--bs-border-opacity: 0.3;">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button bg-dark text-white fw-bold shadow-none collapsed px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            ¿Cuánto tiempo toma ver resultados en mis redes sociales?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-light fw-normal px-4 py-3 fs-6" style="color: #d1d5db !important;">
+                            Los primeros cambios positivos en identidad visual y alcance orgánico se notan en las primeras 3 a 4 semanas. Sin embargo, para consolidar una comunidad fiel y conversiones constantes, recomendamos un periodo mínimo de trabajo de 3 meses.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-transparent border border-secondary rounded-4 mb-3 overflow-hidden" style="--bs-border-opacity: 0.3;">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button bg-dark text-white fw-bold shadow-none collapsed px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            ¿Cuál es el presupuesto ideal para invertir en publicidad digital (Ads)?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-light fw-normal px-4 py-3 fs-6" style="color: #d1d5db !important;">
+                            Depende de tus objetivos comerciales y tu nicho. Te ayudamos a estructurar presupuestos iniciales escalables desde montos accesibles diarios para validar audiencias y maximizar el retorno de inversión desde el primer día.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-transparent border border-secondary rounded-4 mb-3 overflow-hidden" style="--bs-border-opacity: 0.3;">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button bg-dark text-white fw-bold shadow-none collapsed px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Trabajan solo con empresas locales o con clientes internacionales?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-light fw-normal px-4 py-3 fs-6" style="color: #d1d5db !important;">
+                            Gestionamos proyectos y marcas tanto a nivel nacional como internacional gracias a nuestras metodologías de trabajo remoto 100% optimizadas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-5 mb-5">
+        <div class="container py-4">
+            <div class="contact-box mx-auto" style="max-width: 900px;">
+                <div class="row align-items-center gy-4">
+                    <div class="col-lg-5">
+                        <span class="text-uppercase tracking-wider text-white fw-bold badge bg-secondary mb-2">Hablemos</span>
+                        <h2 class="display-6 fw-bold mt-2 text-white mb-3">¿Listo para despegar tus ventas?</h2>
+                        <p class="text-light fw-normal mb-4 fs-6" style="color: #d1d5db !important;">Completa el formulario y nos pondremos en contacto contigo en menos de 2 horas hábiles.</p>
+                        <div class="d-flex flex-column gap-3">
+                            <div class="d-flex align-items-center gap-3 text-light fw-normal">
+                                <i class="fa-solid fa-phone text-white fs-5"></i>
+                                <span>+58 424-7699009</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 text-light fw-normal">
+                                <i class="fa-solid fa-envelope text-white fs-5"></i>
+                                <span>juanmined2026@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label text-light fw-medium small">Nombre y Apellido</label>
+                                <input type="text" class="form-control text-white fw-normal" id="nombre" placeholder="Ej. Carlos Pérez" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label text-light fw-medium small">Número de WhatsApp</label>
+                                <input type="tel" class="form-control text-white fw-normal" id="telefono" placeholder="Ej. +58 412 1234567" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="servicio" class="form-label text-light fw-medium small">Servicio de Interés</label>
+                                <select class="form-select text-white fw-normal" id="servicio" required>
+                                    <option value="" selected disabled class="bg-dark text-white">Selecciona una opción</option>
+                                    <option value="Redes Sociales" class="bg-dark text-white">Gestión de Redes Sociales</option>
+                                    <option value="Publicidad Digital" class="bg-dark text-white">Publicidad Digital (Ads)</option>
+                                    <option value="Automatización e IA" class="bg-dark text-white">Automatización e IA</option>
+                                    <option value="Asesoría Integral" class="bg-dark text-white">Asesoría Integral</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-custom-white w-100 py-3 mt-2 fw-bold">Enviar Solicitud</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Widgets (WhatsApp & Instagram) -->
+    <div class="floating-widgets">
+        <a href="https://instagram.com/juanmarketing_sc" target="_blank" class="float-btn instagram-float" title="Síguenos en Instagram @juanmarketing_sc">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/584247699009?text=Hola,%20me%20gustaría%20chatear%20con%20un%20asesor%20de%20Juan%20Marketing" target="_blank" class="float-btn whatsapp-float" title="Chatear por WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center gy-4">
+                <div class="col-md-6 text-center text-md-start">
+                    <a class="navbar-brand d-inline-flex align-items-center gap-2 mb-2" href="#">
+                        Juan Marketing
+                    </a>
+                    <p class="small text-light fw-normal mb-0" style="color: #9ca3af !important;">Agencia líder en marketing digital y automatizaciones.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-4 mb-3">
+                        <a href="https://instagram.com/juanmarketing_sc" target="_blank" class="fs-5 text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/584247699009" target="_blank" class="fs-5 text-white"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <p class="small text-light fw-normal mb-0" style="color: #9ca3af !important;">&copy; 2026 Juan Marketing. Todos los derechos reservados. Contacto: juanmined2026@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const servicio = document.getElementById('servicio').value;
+
+            const whatsappMessage = `Hola, mi nombre es ${nombre}. Mi número es ${telefono} y estoy interesado en el servicio de: ${servicio}.`;
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // Redirect directly to WhatsApp with prefilled message
+            window.open(`https://wa.me/584247699009?text=${encodedMessage}`, '_blank');
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
